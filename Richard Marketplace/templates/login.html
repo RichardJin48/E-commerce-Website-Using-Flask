@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ vars[0] }}</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/login.css">
+</head>
+
+<body>
+    <div class="header collapse">
+        <div class="wrapper">
+            <h1><a href="/">Richard Marketplace</a></h1>
+        </div>
+    </div>
+
+
+    <div class="login wrapper">
+        <form action="{{ vars[1] }}" method="post" autocomplete="off" class="active">
+            <div class="content">
+                <h3>{{ vars[0] }}</h3>
+                <div class="username">
+                    <span>Username: </span>
+                    <input type="text" placeholder="Enter your username" name="username">
+                    <p>{{ notif1 }}</p>
+                </div>
+                <div class="password">
+                    <span>Password : </span>
+                    <input type="password" placeholder="Enter your password" name="password">
+                    <p>{{ notif2 }}</p>
+                </div>
+                <a href="{{ vars[3] }}" class="jump">{{ vars[4] }}</a>
+                <button type="submit">Log In</button>
+                <a href="{{ vars[2] }}" class="register">Register</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+
+    </div>
+
+</body>
+
+</html>

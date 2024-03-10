@@ -1,0 +1,82 @@
+.result{
+    margin-bottom: 20px;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.result .title{
+    padding: 20px 0;
+    margin: 20px 40px;
+    border-bottom: 1px solid #000;
+}
+
+.result .content{
+    margin-top: 2px;
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.result .content li{
+    float: left;
+    margin: 0 37px 40px;
+    height: 320px;
+    width: 300px;
+    border: 1px solid #e9e9e9;
+    box-shadow: 1px 2px;
+    text-align: center;
+    background-color: white;
+}
+
+
+.result .content li img{
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+.result .content h3{
+    margin: 10px 0;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgb(138, 134, 134);
+}
+
+.result .content li span{
+    font-size: 18px;
+}
+
+.result .content li div {
+    color: red;
+}
+
+.result .content li span,
+.result .content li i{
+    font-size: 18px;
+}
+
+.result .content li div {
+    color: red;
+}
+
+.result .content ul{
+    display: none;
+}
+
+.result .content .active{
+    display: contents;
+}
+
+.result .title li{
+    float: left;
+    padding: 3px 10px;
+    border: 1px solid black;
+    box-shadow: 1px 2px;
+    cursor: pointer;
+    background-color: rgba(218, 218, 218, 0.5);
+}
+
+.result .title .active{
+    background-color: rgb(23, 149, 19);
+    color: #fff;
+    box-shadow: 1px 2px black;
+}

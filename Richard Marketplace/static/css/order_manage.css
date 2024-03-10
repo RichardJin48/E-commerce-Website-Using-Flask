@@ -1,0 +1,103 @@
+.title a{
+    display: block;
+    float: left;
+    padding: 10px;
+    background-color: #fff;
+    border: 2px solid black;
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+}
+
+.title a:first-child{
+    background-color: rgb(23, 149, 19);
+    color: #fff;
+}
+
+.title a:last-child{
+    background-color: rgba(218, 218, 218, 0.5);
+}
+
+.ord_mag {
+    margin-top: 40px;
+    padding: 20px;
+    padding-bottom: 80px;
+    margin-bottom: 40px;
+    min-height: 446px;
+}
+
+.ord_mag h3 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+}
+
+.ord_mag div {
+    margin-top: 1px;
+    max-height: 550px;
+    overflow-y: auto;
+}
+
+.ord_mag table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 2px solid rgb(23, 149, 19);
+    width: 1080px;
+    text-align: center;
+    box-shadow: 2px 1px rgb(23, 149, 19);
+    background-color: white;
+}
+
+.ord_mag table th {
+    background-color: rgb(23, 149, 19);
+    font: bold 16px;
+    color: #fff;
+    height: 24px;
+}
+
+.ord_mag table td {
+    border: 1px solid #d0d0d0;
+    color: #404060;
+    padding: 6px;
+    max-width: 120px;
+}
+
+.ord_mag table td:first-child {
+    border-right: none;
+}
+
+.ord_mag table td:nth-child(2) {
+    border-left: none;
+}
+
+.ord_mag table img {
+    width: 137px;
+    height: 137px;
+}
+
+.ord_mag table a {
+    padding: 10px 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(23, 149, 19);
+    box-shadow: 1px 1px rgb(23, 149, 19);
+    color: white;
+    cursor: pointer;
+}
+
+.ord_mag table .price {
+    color: red;
+}
+
+.ord_mag table .price span {
+    font-size: 19px;
+}
+
+.ord_mag .info a {
+    background-color: white;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    width: 137px;
+    height: 137px;
+}

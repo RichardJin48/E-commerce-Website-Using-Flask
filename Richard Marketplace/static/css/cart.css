@@ -1,0 +1,131 @@
+.cart {
+    margin-top: 40px;
+    padding: 20px;
+    padding-bottom: 80px;
+    margin-bottom: 40px;
+    min-height: 446px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.cart h3 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+}
+
+.cart div {
+    margin-top: 20px;
+    max-height: 550px;
+    overflow-y: auto;
+}
+
+.cart table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 2px solid rgb(23, 149, 19);
+    width: 1080px;
+    text-align: center;
+    box-shadow: 2px 1px rgb(23, 149, 19);
+    background-color: white;
+}
+
+.cart table th {
+    background-color: rgb(23, 149, 19);
+    font: bold 16px;
+    color: #fff;
+    height: 24px;
+}
+
+.cart table td {
+    border: 1px solid #d0d0d0;
+    color: #404060;
+    padding: 6px;
+}
+
+.cart table td:first-child{
+    border-right: none;
+    width: 190px;
+}
+
+.cart table td:nth-child(2) {
+    border-left: none;
+    text-align: left;
+}
+
+.cart table td:nth-child(3){
+    width: 250px;
+}
+
+.cart table img {
+    width: 137px;
+    height: 137px;
+}
+
+.cart table a {
+    padding: 10px 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(23, 149, 19);
+    box-shadow: 1px 1px rgb(23, 149, 19);
+    color: white;
+    cursor: pointer;
+}
+
+.cart table .price {
+    color: red;
+}
+
+.cart table .price span {
+    font-size: 19px;
+}
+
+.cart a {
+    padding: 10px 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(23, 149, 19);
+    box-shadow: 1px 1px rgb(23, 149, 19);
+    color: white;
+    cursor: pointer;
+}
+
+.total{
+    float: right;
+    height: 60px;
+    line-height: 47px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.total i{
+    font-style: normal;
+    color: red;
+}
+
+.total span {
+    font-size: 24px;
+    color: red;
+}
+
+.all {
+    float: right;
+    padding: 20px 35px;
+    outline: none;
+    border: none;
+    background-color: #97D9E1;
+    box-shadow: 1px 1px #97D9E1;
+    color: white;
+    cursor: pointer;
+    font-size: 19px;
+    margin-right: 20px;
+}
+
+.cart .info a {
+    background-color: white;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    width: 137px;
+    height: 137px;
+}
+

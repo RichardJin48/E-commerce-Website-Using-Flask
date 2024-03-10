@@ -1,0 +1,139 @@
+
+.sale h2{
+    margin: 15px 0 20px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+
+.sale .content{
+    margin-bottom: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    
+}
+
+.sale .content ul{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
+}
+
+.sale .content li{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    height: 320px;
+    width: 300px;
+    border: 1px solid #e9e9e9;
+    box-shadow: 1px 2px;
+    text-align: center;
+    background-color: white;
+}
+
+
+.sale .content li img{
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+.sale .content h3{
+    margin: 10px 0;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgb(138, 134, 134);
+}
+
+.sale .content li span{
+    font-size: 18px;
+}
+
+.sale .content li i{
+    font-size: 18px;
+}
+
+.sale .content li div {
+    color: red;
+}
+
+.category{
+    margin-bottom: 20px;
+}
+
+.category h2{
+    margin: 15px 0 20px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+
+.category .title li{
+    float: left;
+    padding: 3px 10px;
+    border: 1px solid black;
+    box-shadow: 1px 2px;
+    cursor: pointer;
+    background-color: rgba(218, 218, 218, 0.5);
+}
+
+.category .title .active{
+    background-color: rgb(23, 149, 19);
+    color: #fff;
+    box-shadow: 1px 2px black;
+}
+
+.category .content{
+    margin-top: 2px;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.category .content ul{
+    display: none;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.category .content .active{
+    display: contents;
+}
+
+.category .content li{
+    float: left;
+    margin: 20px 40px 40px;
+    height: 320px;
+    width: 300px;
+    border: 1px solid #e9e9e9;
+    box-shadow: 1px 2px;
+    text-align: center;
+    background-color: white;
+}
+
+.category .content li img{
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+.more {
+    margin: 20px 27px 0;
+    float: right;
+    color: rgb(200, 0, 0);
+}
+
+.category .content h3{
+    margin: 10px 0;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgb(138, 134, 134);
+}
+
+.category .content li span,
+.category .content li i{
+    font-size: 18px;
+}
+
+.category .content li div {
+    color: red;
+}

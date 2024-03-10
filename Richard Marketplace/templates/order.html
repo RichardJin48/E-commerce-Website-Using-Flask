@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/order.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="wrapper">
+            {% if not buyer %}
+            <ul>
+                <li><a href="/buyerLogin">Log In</a></li>
+                <li><a href="/buyerRegister">Register</a></li>
+            </ul>
+            {% else %}
+            <ul>
+                <li>Welcome! User: {{ buyer }}</li>
+                <li><a href="/buyerLogout">Log Out</a></li>
+                <li><a href="/order">Order</a></li>
+                <li><a href="/cart">Shopping Cart</a></li>
+            </ul>
+            {% endif %}
+
+            <h1><a href="/">Richard Marketplace</a></h1>
+        </div>
+    </div>
+
+    <div class="search wrapper">
+        <form action="/search" method="post">
+            <input type="search" name="keyword" value="{{ keyword }}" placeholder="Please enter the keyword"><button>Search</button>
+        </form>
+    </div>
+
+    <div class="order wrapper">
+        <h3>Order</h3>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            Product
+                        </th>
+                        <th>
+                            Buyer
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Track
+                        </th>
+                        <th>
+                            Purchase Time
+                        </th>
+                        <th>
+                            Delivery Time
+                        </th>
+                        <th>
+                            Arrival Time
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td class="info">
+                            <a href="/info/{{ order[9] }}">
+                                <img src="{{ order[13] }}" alt="">
+                            </a>
+                        </td>
+                        <td>
+                            {{ order[10] }}
+                        </td>
+                        <td>
+                            {{ order[6] }}
+                        </td>
+                        <td>
+                            {{ order[5] }}
+                        </td>
+                        <td>
+                            {{ order[12] }}
+                        </td>
+                        <td class="price">
+                            ￥<span>{{ order[11] }}</span>
+                        </td>
+                        <td>
+                            {% if order[1] == "Preparing" %}
+                                <p style="color: #006cc5">{{ order[1] }}</p>
+                            {% elif order[1] == "Delivering" %}
+                                <p style="color: #dc8400">{{ order[1] }}</p>
+                            {% elif order[1] == "Completed" %}
+                                <p style="color: #009a00">{{ order[1] }}</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ order[2] }}
+                        </td>
+                        <td>
+                            {% if order[3] %}
+                                {{ order[3] }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if order[4] and order[1] == "Completed" %}
+                                {{ order[4] }}
+                            {% elif order[4] %}
+                                <p style="color: #009a00">{{ order[4] }} (Estimated)</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if order[1] == "Delivering" %}
+                                <a href="/toReceive/{{ order[0] }}">Receive</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="footer">
+
+    </div>
+
+
+</body>
+
+</html>

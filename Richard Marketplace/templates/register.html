@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ vars[0] }}</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/register.css">
+</head>
+<body>
+    <div class="header">
+        <div class="wrapper">
+            <h1><a href="/">Richard Marketplace</a></h1>
+        </div>
+    </div>
+
+
+    <div class="login wrapper">
+        <form action="{{ vars[1] }}" method="post" autocomplete="off">
+            <div  class="content">
+                <h3>{{ vars[0] }}</h3>
+                <div class="username">
+                    <input type="text" placeholder="Enter your username" name="username">
+                    <span>Username : </span>
+                    <p></p>
+                    <p>{{ notif }}</p>
+                </div>
+                <div class="password">
+                    <input type="password" placeholder="Enter your password" name="password">
+                    <span>Password : </span>
+                    <p></p>
+                </div>
+                <div class="confirm">
+                    <input type="password" placeholder="Enter your password again" name="password">
+                    <span>Confirm Password : </span>
+                    <p></p>
+                </div>
+                <div class="phone">
+                    <input type="text" placeholder="Enter your phone" name="phone">
+                    <span>Phone : </span>
+                    <p></p>
+                </div>
+                <div class="email">
+                    <input type="text" placeholder="Enter your email" name="email">
+                    <span>Email : </span>
+                    <p></p>
+                </div>
+                <div class="address">
+                    <input type="text" placeholder="Enter your address" name="addr">
+                    <span>Address : </span>
+                    <p></p>
+                </div>
+                <a href="{{ vars[2] }}" class="register">Cancel</a>
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+
+    </div>
+
+    <script>
+        const username = document.querySelector('[name=username]');
+        username.addEventListener('change', verifyName);
+        function verifyName() {
+            const span = username.nextElementSibling;
+            const p = span.nextElementSibling;
+            const reg = /^[a-zA-Z0-9-_]{1,30}/
+            if (!reg.test(username.value)) {
+                p.innerHTML = 'The username should contain 1-30 characters.';
+                return false;
+            }
+            p.innerHTML = '';
+            return true;
+        }
+
+        const password = document.querySelector('[name=password]');
+        password.addEventListener('change', verifyPassword);
+        function verifyPassword() {
+            const span = password.nextElementSibling;
+            const p = span.nextElementSibling;
+            const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/
+            if (!reg.test(password.value)) {
+                p.innerHTML = 'The password should contain 8-16 numbers and letters in both uppercase and lowercase.';
+                return false;
+            }
+            p.innerHTML = '';
+            return true;
+        }
+
+        const confirm = document.querySelector('.confirm input');
+        confirm.addEventListener('change', verifyConfirmPassword);
+        function verifyConfirmPassword() {
+            const span = confirm.nextElementSibling;
+            const p = span.nextElementSibling;
+            if (confirm.value !== password.value) {
+                p.innerHTML = 'The two passwords should be the same.';
+                return false;
+            }
+            p.innerHTML = '';
+            return true;
+        }
+
+        const email = document.querySelector('[name=email]');
+        email.addEventListener('change', verifyEmail);
+        function verifyEmail() {
+            const span = email.nextElementSibling;
+            const p = span.nextElementSibling;
+            const reg = /^[a-zA-Z0-9_-]{5,}@[a-zA-Z0-9_-]{2,}(.[a-zA-Z0-9_-]+){2,}$/
+            if (!reg.test(email.value)) {
+                p.innerHTML = 'Please enter a legal email address.';
+                return false;
+            }
+            p.innerHTML = '';
+            return true;
+        }
+
+        const phone = document.querySelector('[name=phone]');
+        phone.addEventListener('change', verifyPhone);
+        function verifyPhone() {
+            const span = phone.nextElementSibling;
+            const p = span.nextElementSibling;
+            const reg = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
+            if (!reg.test(phone.value)) {
+                p.innerHTML = 'Please enter a legal phone number.';
+                return false;
+            }
+            p.innerHTML = '';
+            return true;
+        }
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (e) {
+            if (!verifyName()) e.preventDefault();
+            if (!verifyPassword()) e.preventDefault();
+            if (!verifyConfirmPassword()) e.preventDefault();
+            if (!verifyEmail()) e.preventDefault();
+            if (!verifyPhone()) e.preventDefault();
+        })
+
+    </script>
+</body>
+</html>

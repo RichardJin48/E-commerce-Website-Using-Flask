@@ -1,0 +1,89 @@
+form {
+    display: flex;
+    justify-content: center;
+    margin-top: 160px;
+    margin-bottom: 200px;
+    height: 300px;
+    text-align: center;
+}
+
+form .content{
+    position: relative;
+    padding: 20px 40px;
+    height: 400px;
+    width: 450px;
+    background-color: white;
+    border-radius: 22px;
+}
+
+.content h3 {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 21px;
+    background-color: rgba(0, 0, 0, .4);
+    border-radius: 12px;
+    color: white;
+}
+
+.content div{
+    height: 90px;
+    line-height: 90px;
+}
+
+.content input {
+    width: 190px;
+    padding: 5px 0 5px 10px;
+    border: 1px solid rgb(23, 149, 19);
+    outline: 0 none;
+    background-color: transparent;
+    box-shadow: 2px 2px rgb(23, 149, 19);
+    font-size: 16px;
+}
+
+
+button,
+.register {
+    display: inline-block;
+    margin-top: 20px;
+    width: 120px;
+    height: 55px;
+    cursor: pointer;
+    line-height: 55px;
+    font-size: 18px;
+    color: white;
+    background-color: rgb(23, 149, 19);
+    border: none;
+    vertical-align: middle;
+}
+
+.register{
+    margin-left: 30px;
+}
+
+.content p {
+    margin-top: 5px;
+    font-size: 12px;
+    color: red;
+}
+
+.content .jump {
+    display: block;
+    position: absolute;
+    bottom: 17px;
+    right: 44px;
+    color: #afaaaa;
+}
+
+.content div{
+    position: relative;
+}
+
+.content p{
+    display: block;
+    width: 390px;
+    text-align: center;
+    position: absolute;
+    line-height: normal;
+    top: 61px;
+    right: -33px;
+}

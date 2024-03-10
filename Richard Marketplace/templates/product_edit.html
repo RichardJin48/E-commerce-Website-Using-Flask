@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product {{ vars[0] }}</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/common_manage.css">
+    <link rel="stylesheet" href="../static/css/product_edit.css">
+</head>
+
+<body>
+<div class="header">
+    <div class="wrapper">
+        <ul>
+            <li>Welcome! Vendor: {{ vendor }}</li>
+            <li><a href="/vendorLogout">Log Out</a></li>
+        </ul>
+        <h1><a href="/orderManage">Richard Marketplace</a></h1>
+    </div>
+</div>
+
+
+<div class="product_mag wrapper">
+    <div class="title">
+        <a href="/orderManage">Order Management</a>
+        <a href="/productManage">Product Management</a>
+    </div>
+</div>
+
+<div class="prod_detail wrapper">
+    <div class="content">
+        <form action="{{ vars[1] }}" method="post" enctype="multipart/form-data">
+            <div class="normal">
+                <div class="pic">
+                    <input type="file" name="picture" class="input_pic" accept="image/*" title="Choose a photo">
+                    <img src="{{ product[9] }}">
+                    <p><span>+ </span>Upload the photo</p>
+                </div>
+                <div class="attribute fix">
+                    <div>
+                        <h3><span>Name</span>: <input type="text" name="name" value="{{ product[1] }}"></h3>
+                    </div>
+                    <div>
+                        <p><span>Category</span>:
+                            <input type="radio" name="category_id" value="1" {{ check[0] }}> {{ categories[0][0] }}&nbsp;
+                            <input type="radio" name="category_id" value="2" {{ check[1] }}> {{ categories[1][0] }}&nbsp;
+                            <input type="radio" name="category_id" value="3" {{ check[2] }}> {{ categories[2][0] }}&nbsp;
+                            <input type="radio" name="category_id" value="4" {{ check[3] }}> {{ categories[3][0] }}&nbsp;
+                            <input type="radio" name="category_id" value="5" {{ check[4] }}> {{ categories[4][0] }}
+                        </p>
+                    </div>
+                    <div class="price">
+                        <p><span>Price</span>: <i>￥</i><input type="text" name="price" value="{{ product[4] }}" style="width: 120px; color: red;" required></p>
+                    </div>
+                    <div>
+                        <p><span>Description</span>: </p>
+                        <textarea name="description" maxlength="500">{{ product[3] }}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="promotion">
+                <div class="promotion_detail">
+                    <p><span>Promotion Price</span>: <i>￥</i>
+                        {% if not product[10] %}
+                            <input type="text" name="p_price" value="" style="width: 120px; color: red;">
+                        {% else %}
+                            <input type="text" name="p_price" value="{{ product[10] }}" style="width: 120px; color: red;">
+                        {% endif %}
+                    </p>
+                    <span>Promotion Start</span>:<input type="datetime-local" name="p_start" value="{{ product[11] }}">
+                    <span>Promotion End</span>:<input type="datetime-local" name="p_end" value="{{ product[12] }}">
+                </div>
+            </div>
+            <div class="opt">
+                <a href="/productManage">Cancel</a>
+                <button>{{ vars[0] }}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="footer">
+
+</div>
+
+<script>
+    const input_pic = document.querySelector('.input_pic');
+    const img = document.querySelector('.pic img');
+    const text = document.querySelector('.pic p');
+    if (img.getAttribute("src") !== '') {
+        img.style.display = "block"
+    } else if (img.getAttribute("src") === '') {
+        text.style.display = "block";
+    }
+
+    input_pic.addEventListener('change', function () {
+        let file = this.files[0];
+        if (file.type.indexOf("image") == 0) {
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                let newUrl = this.result;
+                img.src = newUrl;
+            }
+            img.style.display = "block";
+            text.style.display = "none";
+        }
+    })
+
+    const input = document.querySelectorAll('input');
+    for (let i = 0; i < input.length; i++) {
+        if (input[i].value !== '') {
+            input[i].style.border = 'none'
+            input[i].style.boxShadow = 'none'
+        }
+        input[i].addEventListener('blur', function () {
+            if (input[i].value === '') {
+                input[i].style.border = '1px solid rgb(23, 149, 19)';
+                input[i].style.borderRadius = '2px';
+            } else {
+                input[i].style.border = 'none';
+                input[i].style.boxShadow = 'none'
+            }
+        })
+        input[i].addEventListener('focus', function () {
+            input[i].style.border = '1px solid rgb(23, 149, 19)';
+            input[i].style.borderRadius = '2px';
+            input[i].style.outline = 'none'
+        })
+    }
+
+
+</script>
+
+</body>
+
+</html>

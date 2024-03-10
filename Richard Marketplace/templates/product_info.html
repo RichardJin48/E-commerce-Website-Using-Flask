@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/product_info.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="wrapper">
+            {% if not buyer %}
+            <ul>
+                <li><a href="/buyerLogin">Log In</a></li>
+                <li><a href="/buyerRegister">Register</a></li>
+            </ul>
+            {% else %}
+            <ul>
+                <li>Welcome! User: {{ buyer }}</li>
+                <li><a href="/buyerLogout">Log Out</a></li>
+                <li><a href="/order">Order</a></li>
+                <li><a href="/cart">Shopping Cart</a></li>
+            </ul>
+            {% endif %}
+
+            <h1><a href="/">Richard Marketplace</a></h1>
+        </div>
+    </div>
+
+    <div class="search wrapper">
+        <form action="/search" method="post">
+            <input type="search" name="keyword" value="{{ keyword }}" placeholder="Please enter the keyword"><button>Search</button>
+        </form>
+    </div>
+
+
+    <div class="product wrapper">
+        <div class='product_pic'>
+            <img src='{{ product[9] }}' class="product_img">
+
+        </div>
+
+        <div class="product_detail">
+            <h3 class='name'> {{ product[1] }} </h3>
+            <div>
+                <p>Vendor: {{ vendor }}</p>
+                <p>Category: {{ category }}</p>
+            </div>
+
+            {% if product[11] and product[12] and product[11] <= time < product[12] %}
+                <p class="price">Price: <span>￥<i>{{ product[10] }}</i><span>{{ product[4] }}</span></span></p>
+                <p class="duration">Promotion Duration: {{ product[11] }} to {{ product[12] }}</p>
+            {% else %}
+                <p class="price">Price: <span>￥<i></i><span>{{ product[4] }}</span></span></p>
+            {% endif %}
+
+            {% if not buyer %}
+                <div class="favour">
+                    <a href="/buyerLogin">Like: {{ product[5] }}</a>
+                    <a href="/buyerLogin">Dislike: {{ product[6] }}</a>
+                </div>
+            {% else %}
+                {% if not like %}
+                    <div class="favour">
+                        <a href="/like/{{ product[0] }}">Like: {{ product[5] }}</a>
+                        <a href="/dislike/{{ product[0] }}">Dislike: {{ product[6] }}</a>
+                    </div>
+                {% elif like[0] == 1 %}
+                    <div class="favour">
+                        <a href="/like/{{ product[0] }}" class="selected">Like: {{ product[5] }}</a>
+                        <a href="/dislike/{{ product[0] }}">Dislike: {{ product[6] }}</a>
+                    </div>
+                {% else %}
+                    <div class="favour">
+                        <a href="/like/{{ product[0] }}">Like: {{ product[5] }}</a>
+                        <a href="/dislike/{{ product[0] }}" class="selected">Dislike: {{ product[6] }}</a>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            <p class="number">
+                <input type="number" oninput="if(value<1)value=1; if(value > 100)value = 100" value="1">
+            </p>
+
+            {% if not buyer %}
+                <div class="opt">
+                    <a href="/buyerLogin"><button>Purchase Now</button></a>
+                    <a href="/buyerLogin"><button>Add to Cart</button></a>
+                </div>
+            {% else %}
+                <div class="opt">
+                    <a href="" class="purchase"><button>Purchase Now</button></a>
+                    <a href="" class="cart"><button>Add to Cart</button></a>
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="comment wrapper">
+        <h3>Description</h3>
+        <textarea class="desc" maxlength="500" readonly>{{ product[3] }}</textarea>
+        <h3>Comment</h3>
+        {% if not buyer %}
+            <h4>Please log in before you writing comments.</h4>
+        {% else %}
+            <form id="comment_submit" action="/comment/{{ product[0] }}" method="post">
+                <textarea name="content" rows="10" placeholder="Post your comments..."></textarea>
+                <button>Submit</button>
+            </form>
+        {% endif %}
+        <ul>
+            {% for c in comments %}
+            <li>
+                <div class="collapse">
+                    <p class="username">{{ c[7] }}</p>
+                    <p class="time">{{ c[6] }}</p>
+                </div>
+                <div class="content">{{ c[4] }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="footer">
+
+    </div>
+
+    <script>
+        const sale_price = document.querySelectorAll('span i');
+        const normal_price = document.querySelectorAll('span span');
+        for (let i = 0; i < sale_price.length; i++) {
+            if (sale_price[i].textContent !== '') {
+                sale_price[i].style.marginRight = "6px";
+                normal_price[i].style.textDecoration = "line-through";
+                normal_price[i].style.fontSize = "14px"
+                normal_price[i].style.color = "#c2baba"
+            }
+        }
+
+        const input = document.querySelector('input[type="number"]')
+        const purchase = document.querySelector('.purchase')
+        const cart = document.querySelector('.cart')
+        purchase.addEventListener('click', function (){
+             purchase.href = `/purchase/{{ product[0] }}?quantity=${input.value}`
+        })
+        cart.addEventListener('click', function (){
+            cart.href = `/addCart/{{ product[0] }}?quantity=${input.value}`
+        })
+    </script>
+
+</body>
+
+</html>

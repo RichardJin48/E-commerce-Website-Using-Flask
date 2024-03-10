@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard Marketplace</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="wrapper">
+            {% if not buyer %}
+            <ul>
+                <li><a href="/buyerLogin">Log In</a></li>
+                <li><a href="/buyerRegister">Register</a></li>
+            </ul>
+            {% else %}
+            <ul>
+                <li>Welcome! User: {{ buyer }}</li>
+                <li><a href="/buyerLogout">Log Out</a></li>
+                <li><a href="/order">Order</a></li>
+                <li><a href="/cart">Shopping Cart</a></li>
+            </ul>
+            {% endif %}
+
+            <h1><a href="/">Richard Marketplace</a></h1>
+        </div>
+    </div>
+
+    <div class="search wrapper">
+        <form action="/search" method="post">
+            <input type="search" name="keyword" value="{{ keyword }}" placeholder="Please enter the keyword"><button>Search</button>
+        </form>
+    </div>
+
+
+    <div class="sale wrapper">
+        <h2>Promotion Products</h2>
+        <div class="content">
+            <div class="collapse">
+                <a href="/prom" class="more">more</a>
+            </div>
+            <div>
+                <ul>
+                    {% for product in promotions %}
+                        <a href="/info/{{ product[0] }}">
+                            <li>
+                                <img src="{{ product[9] }}" alt="">
+                                <h3>{{ product[1] }}</h3>
+                                <div>￥<i>{{ product[10] }}</i><span>{{ product[4] }}</span></div>
+                            </li>
+                        </a>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="category wrapper">
+        <h2>Categories</h2>
+        <div class="title collapse">
+            <ul>
+                <li class="active">{{ categories[0][1] }}</li>
+                <li>{{ categories[1][1] }}</li>
+                <li>{{ categories[2][1] }}</li>
+                <li>{{ categories[3][1] }}</li>
+                <li>{{ categories[4][1] }}</li>
+            </ul>
+        </div>
+        <div class="content">
+            <ul class="active">
+                {% for product in catePros %}
+                    {% if product[7] == 1 %}
+                        <a href="/info/{{ product[0] }}">
+                            <li>
+                                <img src="{{ product[9] }}" alt="">
+                                <h3>{{ product[1] }}</h3>
+                                {% if product[11] and product[12] and product[11] <= time < product[12] %}
+                                    <div>￥<i>{{ product[10] }}</i><span>{{ product[4] }}</span></div>
+                                {% else %}
+                                    <div>￥<i></i><span>{{ product[4] }}</span></div>
+                                {% endif %}
+                            </li>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for product in catePros %}
+                    {% if product[7] == 2 %}
+                        <a href="/info/{{ product[0] }}">
+                            <li>
+                                <img src="{{ product[9] }}" alt="">
+                                <h3>{{ product[1] }}</h3>
+                                {% if product[11] and product[12] and product[11] <= time < product[12] %}
+                                    <div>￥<i>{{ product[10] }}</i><span>{{ product[4] }}</span></div>
+                                {% else %}
+                                    <div>￥<i></i><span>{{ product[4] }}</span></div>
+                                {% endif %}
+                            </li>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for product in catePros %}
+                    {% if product[7] == 3 %}
+                        <a href="/info/{{ product[0] }}">
+                            <li>
+                                <img src="{{ product[9] }}" alt="">
+                                <h3>{{ product[1] }}</h3>
+                                {% if product[11] and product[12] and product[11] <= time < product[12] %}
+                                    <div>￥<i>{{ product[10] }}</i><span>{{ product[4] }}</span></div>
+                                {% else %}
+                                    <div>￥<i></i><span>{{ product[4] }}</span></div>
+                                {% endif %}
+                            </li>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for product in catePros %}
+                    {% if product[7] == 4 %}
+                        <a href="/info/{{ product[0] }}">
+                            <li>
+                                <img src="{{ product[9] }}" alt="">
+                                <h3>{{ product[1] }}</h3>
+                                {% if product[11] and product[12] and product[11] <= time < product[12] %}
+                                    <div>￥<i>{{ product[10] }}</i><span>{{ product[4] }}</span></div>
+                                {% else %}
+                                    <div>￥<i></i><span>{{ product[4] }}</span></div>
+                                {% endif %}
+                            </li>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for product in catePros %}
+                    {% if product[7] == 5 %}
+                        <a href="/info/{{ product[0] }}">
+                            <li>
+                                <img src="{{ product[9] }}" alt="">
+                                <h3>{{ product[1] }}</h3>
+                                {% if product[11] and product[12] and product[11] <= time < product[12] %}
+                                    <div>￥<i>{{ product[10] }}</i><span>{{ product[4] }}</span></div>
+                                {% else %}
+                                    <div>￥<i></i><span>{{ product[4] }}</span></div>
+                                {% endif %}
+                            </li>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="footer">
+
+    </div>
+
+    <script>
+        const type_title = document.querySelectorAll('.category .title li');
+        for (let i = 0; i < type_title.length; i++) {
+            type_title[i].addEventListener('click', function () {
+                document.querySelector('.category .title .active').classList.remove('active');
+                this.classList.add('active');
+                document.querySelector('.category .content .active').classList.remove('active');
+                document.querySelector(`.category .content ul:nth-child(${i + 1})`).classList.add('active');
+            })
+        }
+
+        const sale_price = document.querySelectorAll('i');
+        const normal_price = document.querySelectorAll('span');
+        for (let i = 0; i < sale_price.length; i++) {
+            if (sale_price[i].textContent !== '') {
+                sale_price[i].style.marginRight = "6px";
+                normal_price[i].style.textDecoration = "line-through";
+                normal_price[i].style.fontSize = "14px"
+                normal_price[i].style.color = "#c2baba"
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/common_manage.css">
+    <link rel="stylesheet" href="../static/css/product_manage.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="wrapper">
+            <ul>
+                <li>Welcome! Vendor: {{ vendor }}</li>
+                <li><a href="/vendorLogout">Log Out</a></li>
+            </ul>
+            <h1><a href="/orderManage">Richard Marketplace</a></h1>
+        </div>
+    </div>
+
+
+    <div class="product_mag wrapper">
+        <div class="title">
+            <a href="/orderManage">Order Management</a>
+            <a href="/productManage">Product Management</a>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Photo
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                        <th>
+                            Original Price
+                        </th>
+                        <th>
+                            Promotion
+                        </th>
+                        <th>
+                            Promotion Price
+                        </th>
+                        <th>
+                            <a href="/addProduct">Upload</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td class="info">
+                                <a href="/info/{{ product[0] }}">
+                                    <img src="{{ product[9] }}" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                {{ product[1] }}
+                            </td>
+                            <td>
+                                {{ product[13] }}
+                            </td>
+                            <td class="price">
+                                ￥<span>{{ product[4] }}</span>
+                            </td>
+                            <td>
+                                {% if product[11] and product[12] and product[11] <= time < product[12] %}
+                                    <p style="color: #009a00">Yes</p>
+                                {% elif product[11] and product[12] and time < product[11] < product[12] %}
+                                    <p style="color: #b800d3">Waiting</p>
+                                {% elif product[11] and product[12] and product[11] < product[12] <= time %}
+                                    <p style="color: #006cc5">Expired</p>
+                                {% else %}
+                                    <p style="color: #dc8400">No</p>
+                                {% endif %}
+                            </td>
+                            <td class="price">
+                                {% if product[10] %}
+                                    ￥<span>{{ product[10] }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/editProduct/{{ product[0] }}">Modify</a>
+                                <a href="/toDeleteProduct/{{ product[0] }}">Remove</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+
+    </div>
+
+
+</body>
+
+</html>
